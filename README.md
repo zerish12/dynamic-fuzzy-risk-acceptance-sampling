@@ -6,15 +6,39 @@ This repository provides the reproducibility materials for the article:
 
 **Dynamic Fuzzy-Risk Acceptance Sampling Using Recent Production History**
 
-The repository contains the Python and Jupyter workflow used for data preprocessing, production-episode construction, sampling-plan optimisation, comparator analysis, retrospective replay, decision-loss analysis, robustness analysis, and reproduction of the principal manuscript results.
+The repository contains the validated Python/Jupyter workflow used for data preprocessing, production-episode construction, sampling-plan optimisation, comparator analysis, retrospective replay, decision-loss analysis, robustness analysis, and reproduction of the principal manuscript results.
+
+## Repository contents
+
+The principal reproducibility materials are:
+
+- `Dynamic_Fuzzy_Risk_Acceptance_Sampling_A_to_Z_Lab_FIXED.ipynb`  
+  Primary executable Jupyter notebook containing the complete A-to-Z computational workflow.
+
+- `python_codes_results_Dynamic_Fuzzy_Risk...`  
+  Human-readable record of the Python code and executed analysis results.
+
+- `DATASET_VERIFICATION.txt`  
+  Source-data identity and deterministic verification information.
+
+- `requirements.txt`  
+  Python dependencies required to run the notebook.
+
+- `CITATION.cff`  
+  Citation metadata for the reproducibility package.
+
+- `LICENSE`  
+  MIT licence covering the code in this repository.
+
+The validated Jupyter notebook is the primary executable reproducibility artifact.
 
 ## Dataset verification
 
 The source CSV used for the article was independently verified against the reproducibility workflow.
 
-- rows: 80,015
-- columns: 28
-- encoding: UTF-16
+- Rows: 80,015
+- Columns: 28
+- Encoding: UTF-16
 - SHA-256: `613d38f03dd82aa2db6ddec7826719861461104b1dd4188369442dbe8477da3f`
 
 The verified deterministic data chain is:
@@ -25,25 +49,38 @@ The primary episode classes are:
 
 `404 acceptable / 160 indifference / 98 rejectable`
 
+Additional deterministic checkpoints include:
+
+- 5,315 exact duplicate raw records removed
+- 72,885 unique serial numbers after cleaning
+- 866 original lot identifiers
+- 933 defective records
+- 1,227 production episodes under the primary 24-hour gap rule
+- 662 primary eligible episodes with `N >= 50`
+- 584 ordinary-sampling episodes under the proposed method
+- 78 escalated-inspection episodes
+
 ## Dataset source
 
 The empirical analysis uses the publicly available **Product Data CSV** dataset hosted on Kaggle.
 
-- uploader: Tadewos Bellete
+- Uploader: Tadewos Bellete
 - Kaggle identifier: `tadewosbellete/product-data-csv`
-- source file required by the analysis: `PROD_DS_PD.csv`
+- Required source file: `PROD_DS_PD.csv`
 
 The raw CSV is intentionally not redistributed with this repository because its redistribution licence has not been independently verified.
 
-Place the source file at:
+For local reproduction, the source file may be placed at:
 
 `data/raw/PROD_DS_PD.csv`
 
-If the file is absent, the notebook will also attempt to retrieve the dataset using `kagglehub`.
+The validated notebook also searches common local locations for the source file and verifies the file against the expected SHA-256 fingerprint before beginning the analysis.
 
-## Installation and execution
+If the verified source file is not available locally, the notebook attempts retrieval using `kagglehub`.
 
-Create and activate a Python virtual environment and install the required dependencies:
+## Installation
+
+A clean Python environment is recommended.
 
 ```bash
 python -m venv .venv
