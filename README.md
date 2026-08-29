@@ -8,7 +8,7 @@ Then use:
 
 **Kernel -> Restart & Run All**
 
-The notebook performs the complete computational workflow from source-data verification through the final reproducibility checkpoints.
+The notebook performs the complete computational workflow, from source-data verification and preprocessing through production-episode reconstruction, sampling-plan optimisation, retrospective replay, robustness analysis, figure generation, and final reproducibility checkpoints.
 
 ## Primary frozen specification
 
@@ -36,7 +36,7 @@ The validated workflow reproduces the principal deterministic sampling-plan chec
 
 - Fixed classical comparator: `(n, c) = (38, 0)`
 - Static fuzzy comparator: `(n, c) = (142, 2)`
-- Proposed dynamic fuzzy method:
+- Proposed dynamic fuzzy-risk method:
   - 584 ordinary-sampling episodes
   - 78 escalated-inspection episodes
 
@@ -59,6 +59,8 @@ The principal methods compared are:
 4. Static fuzzy sampling
 
 The replay analysis evaluates false-acceptance rate, false-rejection rate, average sample number, inspection fraction, and escalation behaviour.
+
+Because replay-based operating characteristics are Monte Carlo estimates, very small last-decimal differences may occur across computational environments.
 
 ## Robustness analysis
 
@@ -88,17 +90,17 @@ Replay-based operating characteristics are Monte Carlo estimates. Consequently, 
 
 ## Data and code availability
 
-The raw source dataset is not redistributed in this repository. Researchers should obtain `PROD_DS_PD.csv` from the publicly available Kaggle dataset and verify it using the SHA-256 fingerprint reported above.
+The raw source dataset is not redistributed in this repository. Researchers should obtain `PROD_DS_PD.csv` from the publicly available Kaggle dataset and verify it using the SHA-256 fingerprint reported in `DATASET_VERIFICATION.txt`.
 
-The reproducibility materials are maintained in this GitHub repository and permanently archived through Zenodo.
+The complete reproducibility materials are maintained in this GitHub repository and permanently archived through Zenodo.
 
-Archived release DOI:
+**Archived release:** `v1.0.2`
 
-**10.5281/zenodo.22165440**
+**Archived release DOI:** `10.5281/zenodo.22166697`
 
 ## Citation
 
-If using the reproducibility materials, please cite the archived Zenodo release and the associated article.
+If using these reproducibility materials, please cite the archived Zenodo release and the associated article.
 
 Citation metadata are also provided in `CITATION.cff`.
 
