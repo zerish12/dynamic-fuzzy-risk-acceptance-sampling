@@ -1,89 +1,109 @@
-# Dynamic Fuzzy-Risk Acceptance Sampling — A-to-Z Reproducibility Package
+## Running the analysis
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22165440.svg)](https://doi.org/10.5281/zenodo.22165440)
+After starting Jupyter Notebook, open:
 
-This repository provides the reproducibility materials for the article:
+`Dynamic_Fuzzy_Risk_Acceptance_Sampling_A_to_Z_Lab_FIXED.ipynb`
 
-**Dynamic Fuzzy-Risk Acceptance Sampling Using Recent Production History**
+Then use:
 
-The repository contains the validated Python/Jupyter workflow used for data preprocessing, production-episode construction, sampling-plan optimisation, comparator analysis, retrospective replay, decision-loss analysis, robustness analysis, and reproduction of the principal manuscript results.
+**Kernel -> Restart & Run All**
 
-## Repository contents
+The notebook performs the complete computational workflow from source-data verification through the final reproducibility checkpoints.
 
-The principal reproducibility materials are:
+## Primary frozen specification
 
-- `Dynamic_Fuzzy_Risk_Acceptance_Sampling_A_to_Z_Lab_FIXED.ipynb`  
-  Primary executable Jupyter notebook containing the complete A-to-Z computational workflow.
+The primary analysis uses:
 
-- `python_codes_results_Dynamic_Fuzzy_Risk...`  
-  Human-readable record of the Python code and executed analysis results.
+- Acceptable quality level: `pA = 0.01`
+- Rejectable quality level: `pR = 0.03`
+- History window: `K = 10`
+- Primary minimum episode size: `Nmin = 50`
+- Primary episode gap: `24 hours`
+- Producer fuzzy tolerance: `aP = 0.20`, `bP = 0.40`
+- Consumer baseline tolerance: `bC = 0.40`
+- Consumer minimum tolerance: `bC,min = 0.20`
+- Minimum producer satisfaction: `etaP = 0.10`
+- Minimum consumer satisfaction: `etaC = 0.10`
+- Sampling-cost coefficient: `kappa = 0.001`
+- Satisfaction-loss coefficient: `lambda = 1`
+- Producer/consumer weights: `wP = wC = 0.50`
+- Primary retrospective replays: `1,000`
+- Primary random seed: `20260828`
 
-- `DATASET_VERIFICATION.txt`  
-  Source-data identity and deterministic verification information.
+## Deterministic plan checkpoints
 
-- `requirements.txt`  
-  Python dependencies required to run the notebook.
+The validated workflow reproduces the principal deterministic sampling-plan checkpoints, including:
 
-- `CITATION.cff`  
-  Citation metadata for the reproducibility package.
+- Fixed classical comparator: `(n, c) = (38, 0)`
+- Static fuzzy comparator: `(n, c) = (142, 2)`
+- Proposed dynamic fuzzy method:
+  - 584 ordinary-sampling episodes
+  - 78 escalated-inspection episodes
 
-- `LICENSE`  
-  MIT licence covering the code in this repository.
+For the proposed method, the acceptance-number distribution among ordinary-sampling episodes is:
 
-The validated Jupyter notebook is the primary executable reproducibility artifact.
+- `c = 0`: 509 episodes
+- `c = 1`: 63 episodes
+- `c = 2`: 10 episodes
+- `c = 3`: 2 episodes
 
-## Dataset verification
+## Retrospective replay
 
-The source CSV used for the article was independently verified against the reproducibility workflow.
+The primary retrospective evaluation uses 1,000 paired replays with common randomized within-episode ordering across methods.
 
-- Rows: 80,015
-- Columns: 28
-- Encoding: UTF-16
-- SHA-256: `613d38f03dd82aa2db6ddec7826719861461104b1dd4188369442dbe8477da3f`
+The principal methods compared are:
 
-The verified deterministic data chain is:
+1. Dynamic crisp sampling
+2. Fixed classical sampling
+3. Proposed dynamic fuzzy-risk sampling
+4. Static fuzzy sampling
 
-`80,015 -> 80,000 -> 74,685 -> 1,227 episodes -> 662 primary episodes`
+The replay analysis evaluates false-acceptance rate, false-rejection rate, average sample number, inspection fraction, and escalation behaviour.
 
-The primary episode classes are:
+## Robustness analysis
 
-`404 acceptable / 160 indifference / 98 rejectable`
+The reproducibility notebook includes two principal robustness blocks.
 
-Additional deterministic checkpoints include:
+**Robustness Block A** examines combinations of:
 
-- 5,315 exact duplicate raw records removed
-- 72,885 unique serial numbers after cleaning
-- 866 original lot identifiers
-- 933 defective records
-- 1,227 production episodes under the primary 24-hour gap rule
-- 662 primary eligible episodes with `N >= 50`
-- 584 ordinary-sampling episodes under the proposed method
-- 78 escalated-inspection episodes
+- `pR = {0.02, 0.03, 0.05}`
+- `K = {5, 10, 20}`
+- `Nmin = {30, 50}`
 
-## Dataset source
+**Robustness Block B** reconstructs production episodes using:
 
-The empirical analysis uses the publicly available **Product Data CSV** dataset hosted on Kaggle.
+- 12-hour gap
+- 24-hour gap
+- 48-hour gap
 
-- Uploader: Tadewos Bellete
-- Kaggle identifier: `tadewosbellete/product-data-csv`
-- Required source file: `PROD_DS_PD.csv`
+These analyses assess whether the substantive findings depend strongly on the primary specification.
 
-The raw CSV is intentionally not redistributed with this repository because its redistribution licence has not been independently verified.
+## Reproducibility note
 
-For local reproduction, the source file may be placed at:
+The validated Jupyter notebook is the primary executable reproducibility workflow. A separate rendered results file is included as a human-readable record of the executed analysis.
 
-`data/raw/PROD_DS_PD.csv`
+Deterministic data-processing, production-episode construction, classification, and sampling-plan checkpoints are expected to reproduce exactly when the verified source dataset is used.
 
-The validated notebook also searches common local locations for the source file and verifies the file against the expected SHA-256 fingerprint before beginning the analysis.
+Replay-based operating characteristics are Monte Carlo estimates. Consequently, very small last-decimal differences may occur across computational environments while leaving the substantive findings and conclusions unchanged.
 
-If the verified source file is not available locally, the notebook attempts retrieval using `kagglehub`.
+## Data and code availability
 
-## Installation
+The raw source dataset is not redistributed in this repository. Researchers should obtain `PROD_DS_PD.csv` from the publicly available Kaggle dataset and verify it using the SHA-256 fingerprint reported above.
 
-A clean Python environment is recommended.
+The reproducibility materials are maintained in this GitHub repository and permanently archived through Zenodo.
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-jupyter notebook
+Archived release DOI:
+
+**10.5281/zenodo.22165440**
+
+## Citation
+
+If using the reproducibility materials, please cite the archived Zenodo release and the associated article.
+
+Citation metadata are also provided in `CITATION.cff`.
+
+## Licence
+
+The reproducibility code in this repository is released under the MIT License.
+
+The MIT License applies to the repository code and does not grant rights to redistribute the externally hosted Kaggle dataset.
