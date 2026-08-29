@@ -1,0 +1,29 @@
+ATTACHED DATASET VERIFICATION REPORT
+====================================
+
+Input mounted by ChatGPT:
+/mnt/data/8df36f22-d88d-43cf-9fe1-f43499f98ee3.csv
+
+SHA-256:
+613d38f03dd82aa2db6ddec7826719861461104b1dd4188369442dbe8477da3f
+
+Verified directly from the attached CSV:
+- File reads successfully as UTF-16.
+- Shape = (80015, 28).
+- Embedded-header removal leaves 80000 records.
+- Exact duplicate raw records = 5315.
+- Exact-duplicate removal leaves 74685 records.
+- Unique serial numbers = 72885.
+- Unique original lot identifiers = 866.
+- Defective records = 933.
+- Correct date range after day-first parsing:
+  2019-10-04 18:57:07 to 2019-12-20 10:41:08.
+- 24-hour split produces 1227 production episodes.
+- N>=50 leaves 662 primary episodes.
+- Primary truth classes:
+  Acceptable 404
+  Indifference 160
+  Rejectable 98.
+- 282 original lot identifiers split into more than one episode.
+
+The notebook contains exact assertions for these deterministic checkpoints.
