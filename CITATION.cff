@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Dynamic Fuzzy-Risk Acceptance Sampling Using Recent Production History: Reproducibility Code"
+type: software
+
+authors:
+  - family-names: "Khan"
+    given-names: "Muhammad Zahir"
+
+version: "1.0.0"
+date-released: "2026-08-29"
+
+repository-code: "https://github.com/zerish12/dynamic-fuzzy-risk-acceptance-sampling"
+
+abstract: >
+  Python and Jupyter reproducibility code for the article
+  "Dynamic Fuzzy-Risk Acceptance Sampling Using Recent Production History."
+  The workflow reproduces data preprocessing, production-episode
+  construction, dynamic fuzzy-risk sampling, comparator methods,
+  retrospective replay, decision-loss analysis, robustness analyses,
+  and manuscript figures.
+
+keywords:
+  - acceptance sampling
+  - fuzzy risk
+  - statistical quality control
+  - manufacturing
+  - reproducibility
+  - Python
