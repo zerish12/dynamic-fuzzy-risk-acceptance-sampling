@@ -1,12 +1,16 @@
 # Dynamic Fuzzy-Risk Acceptance Sampling — A-to-Z Reproducibility Package
 
-This package reproduces the article:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22165440.svg)](https://doi.org/10.5281/zenodo.22165440)
+
+This repository provides the reproducibility materials for the article:
 
 **Dynamic Fuzzy-Risk Acceptance Sampling Using Recent Production History**
 
-## Dataset verification performed for this version
+The repository contains the Python and Jupyter workflow used for data preprocessing, production-episode construction, sampling-plan optimisation, comparator analysis, retrospective replay, decision-loss analysis, robustness analysis, and reproduction of the principal manuscript results.
 
-The user-supplied original CSV was inspected directly.
+## Dataset verification
+
+The source CSV used for the article was independently verified against the reproducibility workflow.
 
 - rows: 80,015
 - columns: 28
@@ -17,75 +21,32 @@ The verified deterministic data chain is:
 
 `80,015 -> 80,000 -> 74,685 -> 1,227 episodes -> 662 primary episodes`
 
-and the primary classes are:
+The primary episode classes are:
 
-`404 acceptable / 160 indifference / 98 rejectable`.
+`404 acceptable / 160 indifference / 98 rejectable`
 
 ## Dataset source
 
-Kaggle:
+The empirical analysis uses the publicly available **Product Data CSV** dataset hosted on Kaggle.
 
-- **Product Data CSV**
 - uploader: Tadewos Bellete
-- identifier: `tadewosbellete/product-data-csv`
-- required source file: `PROD_DS_PD.csv`
+- Kaggle identifier: `tadewosbellete/product-data-csv`
+- source file required by the analysis: `PROD_DS_PD.csv`
 
-The raw CSV is intentionally not bundled in the shareable ZIP because its redistribution licence has not been independently verified.
+The raw CSV is intentionally not redistributed with this repository because its redistribution licence has not been independently verified.
 
-Place the file at:
+Place the source file at:
 
 `data/raw/PROD_DS_PD.csv`
 
-The notebook will also try `kagglehub` if the file is absent.
+If the file is absent, the notebook will also attempt to retrieve the dataset using `kagglehub`.
 
-## Run
+## Installation and execution
+
+Create and activate a Python virtual environment and install the required dependencies:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 jupyter notebook
-```
-
-Open:
-
-`Dynamic_Fuzzy_Risk_Acceptance_Sampling_A_to_Z_Lab.ipynb`
-
-and use **Restart & Run All**.
-
-## Primary frozen specification
-
-- `pA = 0.01`
-- `pR = 0.03`
-- `K = 10`
-- `Nmin = 50`
-- gap rule = 24 hours
-- producer fuzzy interval = `[0.20, 0.40]`
-- consumer upper tolerance moves from `0.40` to `0.20`
-- `aC_t = 0.5*bC_t`
-- `etaP = etaC = 0.10`
-- inspection cost coefficient = `0.001`
-- fuzzy penalty weight = `1.0`
-- `wP = wC = 0.50`
-- primary replays = 1,000
-- primary seed = `20260828`
-
-## Deterministic plan checkpoints
-
-- fixed classical plan: `(38,0)`
-- strict `alpha<=0.05, beta<=0.10`: `(390,7)`, implementable in 6/662 episodes
-- proposed ordinary-sampling episodes: 584
-- proposed escalations: 78
-- dynamic crisp escalations: 30
-- static fuzzy escalations: 651
-
-## Manuscript replay targets
-
-| Method | FA | FR | ASN | Inspection | Escalated |
-|---|---:|---:|---:|---:|---:|
-| Dynamic crisp | 0.1196 | 0.0057 | 35.9622 | 0.3740 | 30 |
-| Fixed classical | 0.0890 | 0.0066 | 38.0000 | 0.3952 | 0 |
-| Proposed dynamic fuzzy | 0.0209 | 0.0004 | 54.9502 | 0.5715 | 78 |
-| Static fuzzy | 0.0004 | 0.0006 | 65.3248 | 0.6794 | 651 |
-
-Tiny last-decimal Monte Carlo differences may occur across software/implementation environments; deterministic plan-selection checkpoints should match exactly.
