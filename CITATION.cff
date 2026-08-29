@@ -1,16 +1,22 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
+
 title: "Dynamic Fuzzy-Risk Acceptance Sampling Using Recent Production History: Reproducibility Code"
+
 type: software
 
 authors:
   - family-names: "Khan"
     given-names: "Muhammad Zahir"
 
-version: "1.0.0"
+version: "1.0.1"
 date-released: "2026-08-29"
 
+doi: "10.5281/zenodo.22165440"
+
 repository-code: "https://github.com/zerish12/dynamic-fuzzy-risk-acceptance-sampling"
+
+license: "MIT"
 
 abstract: >
   Python and Jupyter reproducibility code for the article
