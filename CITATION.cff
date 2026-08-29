@@ -9,10 +9,8 @@ authors:
   - family-names: "Khan"
     given-names: "Muhammad Zahir"
 
-version: "1.0.1"
+version: "1.0.2"
 date-released: "2026-08-29"
-
-doi: "10.5281/zenodo.22165440"
 
 repository-code: "https://github.com/zerish12/dynamic-fuzzy-risk-acceptance-sampling"
 
